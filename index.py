@@ -22,6 +22,10 @@ def home():
         print("Database Error")
         return render_template("choose.html",error = str(e))
 
+@app.route("/SignUpPage")
+def SignUp():
+    return render_template("SignUpPage.html")
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",10000))
     app.run(host="0.0.0.0",port=port)
