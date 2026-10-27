@@ -42,12 +42,11 @@ def UsernameCheckInDatabase(Username):
         else:
             print("error in UsernameCheckInDatabase")
             
-#this is to make the same name as the Gmail           
+#this is to make the same method name as the Gmail           
 def UsernameAnalysis(Username):
     UsernameCheckInDatabase(Username)
 
 #GmailConfirmation
-
 
 gmaillist = []
 for i in range(len(datalsit)):
@@ -106,6 +105,7 @@ def CreteAccount():
     ConfirmPassword = request.form["ConfirmPassword"]
     GmailAnalysis(Gmail=Gmail)
     doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
+    UsernameAnalysis(Username=UserName)
 
     return UserName
 
