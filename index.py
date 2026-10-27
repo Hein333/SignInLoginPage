@@ -106,7 +106,7 @@ def CreteAccount():
     GmailAnalysis(Gmail=Gmail)
     doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
     UsernameAnalysis(Username=UserName)
-
+    print("helo")
     return UserName
 
 if __name__ == "__main__":
