@@ -24,7 +24,7 @@ except Exception as e:
 
 #MethodsUsedInWebPages
 
-#GmailConfirmation And Database Update
+#GmailConfirmation
 
 datalsit = rows
 gmaillist = []
@@ -51,7 +51,15 @@ def GmailAnalysis(Gmail):
         GmailCheckInDatabase(Gmail)
     else:
         print("Not a Gamil")
-    
+
+
+#check if the password and the confimation password are the same
+
+def doublePasswordConfirmation(Password,ConfirmPassword):
+    if Password == ConfirmPassword:
+        print("Your passowrd is ok")
+    else :
+        print("Your password and confirmation password are not the same")
 
 
 
@@ -75,6 +83,7 @@ def CreteAccount():
     Password = request.form["Password"]
     ConfirmPassword = request.form["ConfirmPassword"]
     GmailAnalysis(Gmail=Gmail)
+    doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
 
     return UserName
 
