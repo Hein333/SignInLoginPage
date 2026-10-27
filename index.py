@@ -10,9 +10,27 @@ DB_DSN = os.environ.get("DB_DSN")
 
 #MethodsUsedInWebPages
 
-#Username or Gmail Analysis
-def UsernameOrGmailAnalysis(UsernameOrGmail):
-    return UsernameOrGmail
+#GmailConfirmation And Database Update
+
+gmaillsit = ["hein@gmail.com","aung@gmail.com"]
+
+def GmailCheckInDatabase(Gmail):
+    if Gmail in gmaillsit:
+        print("Your gmail is already used")
+    else:
+        gmaillsit.append(Gmail)
+        print(gmaillsit)
+        print("Gamil added")
+
+def GmailAnalysis(Gmail):
+    GmailKeyConfirmation =  "@" in Gmail
+    if GmailKeyConfirmation:
+        GmailCheckInDatabase(Gmail)
+    else:
+        print("Not a Gamil")
+    return Gmail
+
+
 
 #WebPagesManageMent
 @app.route("/")
@@ -43,6 +61,7 @@ def CreteAccount():
     Gmail = request.form["Gmail"]
     Password = request.form["Password"]
     ConfirmPassword = request.form["ConfirmPassword"]
+    GmailAnalysis(Gmail=Gmail)
 
     return UserName
 
