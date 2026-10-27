@@ -15,6 +15,7 @@ try:
 
             rows = cursor.fetchall()
             print(rows)
+            print(cursor)
 
 except Exception as e:
     print(f"Database Error{e}",flash=True)
