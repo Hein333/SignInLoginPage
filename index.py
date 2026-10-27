@@ -22,7 +22,7 @@ def home():
         print("Database Error")
         return render_template("choose.html",error = str(e))
 
-@app.route("/SignUpPage")
+@app.route("/SignUpPage",methods=["post"])
 def SignUp():
     return render_template("SignUpPage.html")
 
