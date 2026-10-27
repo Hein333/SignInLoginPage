@@ -38,13 +38,13 @@ def home():
     try:
         with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
             with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM clientData")
+                cursor.execute("SELECT * FROM cusdata")
 
                 rows = cursor.fetchall()
                 return render_template("choose.html")
 
     except Exception as e:
-        print("Database Error")
+        print(f"Database Error{e}",flash=True)
         return render_template("choose.html",error = str(e))
 
 @app.route("/SignUpPage",methods=["post"])
