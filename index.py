@@ -3,11 +3,18 @@ from flask import Flask,render_template,request
 import oracledb
 
 app = Flask(__name__)
-
+#Database Login#
 DB_USER = os.environ.get("DB_USER")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_DSN = os.environ.get("DB_DSN")
 
+#MethodsUsedInWebPages
+
+#Username or Gmail Analysis
+def UsernameOrGmailAnalysis(UsernameOrGmail):
+    return UsernameOrGmail
+
+#WebPagesManageMent
 @app.route("/")
 def home():
     try:
@@ -32,10 +39,12 @@ def LogIn():
 
 @app.route("/CreateAccount",methods=["post"])
 def CreteAccount():
-    UserNameOrGmail = request.form["UserNameOrGmail"]
+    UserName = request.form["UserName"]
+    Gmail = request.form["Gmail"]
     Password = request.form["Password"]
     ConfirmPassword = request.form["ConfirmPassword"]
-    return UserNameOrGmail
+
+    return UserName
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",10000))
