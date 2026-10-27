@@ -26,17 +26,25 @@ except Exception as e:
 
 #GmailConfirmation And Database Update
 
-gmaillsit = ["hein@gmail.com","aung@gmail.com"]
+datalsit = rows
+gmaillist = []
+for i in range(len(datalsit)):
+    gmaillist.append(datalsit[i][0])
 
-#Method for cheking if the gamil is in database or not
 def GmailCheckInDatabase(Gmail):
-    if Gmail in rows:
-        print("Your gmail is already used")
-    else:
-        gmaillsit.append(Gmail)
-        print(gmaillsit)
-        print("Gamil added")
-
+    for i in range(len(gmaillist)):
+        if Gmail in gmaillist:
+            print("Your gmail is already used")
+            break
+        elif Gmail not in gmaillist:
+            gmaillist.append(Gmail)
+            print(gmaillist)
+            print("Gamil added")
+            break
+        else:
+            print("error in GmailCheckInDatabase")
+            
+#need to improve later more specifically            
 def GmailAnalysis(Gmail):
     GmailKeyConfirmation =  "@" in Gmail
     if GmailKeyConfirmation:
