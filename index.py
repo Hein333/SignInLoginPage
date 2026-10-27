@@ -26,6 +26,10 @@ def home():
 def SignUp():
     return render_template("SignUpPage.html")
 
+@app.route("/LogInPage",methods=["post"])
+def LogIn():
+    return render_template("LogInPage.html")
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",10000))
     app.run(host="0.0.0.0",port=port)
