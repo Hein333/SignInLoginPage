@@ -32,7 +32,10 @@ def LogIn():
 
 @app.route("/CreateAccount",methods=["post"])
 def CreteAccount():
-    return request.form
+    UserNameOrGmail = request.form["UserNameOrGmail"]
+    Password = request.form["Password"]
+    ConfirmPassword = request.form["ConfirmPassword"]
+    return UserNameOrGmail
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",10000))
