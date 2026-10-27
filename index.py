@@ -51,7 +51,7 @@ def GmailAnalysis(Gmail):
         GmailCheckInDatabase(Gmail)
     else:
         print("Not a Gamil")
-    return Gmail
+    
 
 
 
