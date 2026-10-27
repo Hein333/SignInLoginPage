@@ -28,8 +28,9 @@ except Exception as e:
 
 gmaillsit = ["hein@gmail.com","aung@gmail.com"]
 
+#Method for cheking if the gamil is in database or not
 def GmailCheckInDatabase(Gmail):
-    if Gmail in gmaillsit:
+    if Gmail in rows:
         print("Your gmail is already used")
     else:
         gmaillsit.append(Gmail)
@@ -49,17 +50,7 @@ def GmailAnalysis(Gmail):
 #WebPagesManageMent
 @app.route("/")
 def home():
-    try:
-        with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM cusdata")
-
-                rows = cursor.fetchall()
-                return render_template("choose.html")
-
-    except Exception as e:
-        print(f"Database Error{e}",flash=True)
-        return render_template("choose.html",error = str(e))
+    return render_template("choose.html")
 
 @app.route("/SignUpPage",methods=["post"])
 def SignUp():
