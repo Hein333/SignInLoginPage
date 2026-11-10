@@ -105,10 +105,20 @@ def CreteAccount():
     GmailAnalysis(Gmail=Gmail,datalist=datalist)
     doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
     UsernameAnalysis(Username=UserName,datalist=datalist)
-    cursor.execute(f"INSERT INTO CUSDATA(GMAIL,PASSWORD) VALUES('{Gmail}','{Password})'")
-    cursor.execute("COMMIT")
-    print(rows)
-    return UserName
+    try:
+        with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(f"INSERT INTO CUSDATA(GMAIL,PASSWORD) VALUES('{Gmail}','{Password})'")
+                cursor.execute("COMMIT")
+
+                rows = cursor.fetchall()
+                print(rows)
+                print(cursor)
+
+    except Exception as e:
+        print(f"Database Error{e}",flush=True)
+        print(rows)
+        return UserName
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",10000))
