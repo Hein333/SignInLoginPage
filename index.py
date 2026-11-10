@@ -20,16 +20,16 @@ try:
 except Exception as e:
     print(f"Database Error{e}",flush=True)
         
-datalsit = rows
+datalist = rows
 
 #MethodsUsedInWebPages
 
 #Username check in database     !!!!!!!!!!!!!
 
-def UsernameCheckInDatabase(Username,datalsit):
+def UsernameCheckInDatabase(Username,datalist):
     usernamelist = []
-    for i in range(len(datalsit)):
-        usernamelist.append(datalsit[i][1])
+    for i in range(len(datalist)):
+        usernamelist.append(datalist[i][1])
     for i in range(len(usernamelist)):
         if Username in usernamelist:
             print("Your username is already used")
@@ -43,15 +43,15 @@ def UsernameCheckInDatabase(Username,datalsit):
             print("error in UsernameCheckInDatabase")
             
 #this is to make the same method name as the Gmail           
-def UsernameAnalysis(Username,datalsit):
-    UsernameCheckInDatabase(Username,datalsit)
+def UsernameAnalysis(Username,datalist):
+    UsernameCheckInDatabase(Username,datalist)
 
 #GmailConfirmation    !!!!!!!!!!!!!
 
-def GmailCheckInDatabase(Gmail,datalsit):
+def GmailCheckInDatabase(Gmail,datalist):
     gmaillist = []
-    for i in range(len(datalsit)):
-        gmaillist.append(datalsit[i][0])
+    for i in range(len(datalist)):
+        gmaillist.append(datalist[i][0])
     for i in range(len(gmaillist)):
         if Gmail in gmaillist:
             print("Your gmail is already used")
@@ -65,7 +65,7 @@ def GmailCheckInDatabase(Gmail,datalsit):
             print("error in GmailCheckInDatabase")
             
 #need to improve later more specifically            
-def GmailAnalysis(Gmail,datalsit):
+def GmailAnalysis(Gmail,datalist):
     GmailKeyConfirmation =  "@" in Gmail
     if GmailKeyConfirmation:
         GmailCheckInDatabase(Gmail,datalist)
@@ -102,9 +102,9 @@ def CreteAccount():
     Gmail = request.form["Gmail"]
     Password = request.form["Password"]
     ConfirmPassword = request.form["ConfirmPassword"]
-    GmailAnalysis(Gmail=Gmail,datalsit=datalsit)
+    GmailAnalysis(Gmail=Gmail,datalsit=datalist)
     doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
-    UsernameAnalysis(Username=UserName,datalsit=datalsit)
+    UsernameAnalysis(Username=UserName,datalsit=datalist)
     print(rows)
     return UserName
 
