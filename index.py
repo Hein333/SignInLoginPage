@@ -108,7 +108,8 @@ def CreteAccount():
     try:
         with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
             with connection.cursor() as cursor:
-                cursor.execute(f"INSERT INTO CUSDATA(GMAIL,PASSWORD) VALUES('{Gmail}','{Password})'")
+                sql = "INSERT INTO CUSDATA(GMAIL,PASSWORD) VALUES(:1,:2)"
+                cursor.execute(sql, (Gmail,Password))
                 cursor.execute("COMMIT")
 
                 rows = cursor.fetchall()
