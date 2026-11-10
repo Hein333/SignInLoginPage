@@ -85,10 +85,14 @@ def GmailAnalysis(Gmail,datalist):
 #check if the password and the confimation password are the same
 
 def doublePasswordConfirmation(Password,ConfirmPassword):
+    result = False
     if Password == ConfirmPassword:
         print("Your passowrd is ok")
+        result = True
     else :
         print("Your password and confirmation password are not the same")
+        result = False
+    return result
 
 
 
