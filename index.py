@@ -170,13 +170,15 @@ def loginAccount():
         GmailOK = GmailAnalysis(Gmail=UsernameOrGmail,datalist=datalist)
         if not GmailOK:
             checkUserNameGmailPassword("gmail",UsernameOrGmail,Password)
-            return "logged in"
-        UsernameOk = UsernameAnalysis(Username=UsernameOrGmail,datalist=datalist)
-        if not UsernameOk:
-            checkUserNameGmailPassword("username",UsernameOrGmail,Password)
-            return "logged in"
-    else:
-        return "Not Logged In"
+            return "logged in with gmail"
+    
+    UsernameOk = UsernameAnalysis(Username=UsernameOrGmail,datalist=datalist)
+    if not UsernameOk:
+        checkUserNameGmailPassword("username",UsernameOrGmail,Password)
+        return "logged in with username"
+    return "Not logged in "
+    
+    
 
 
 
