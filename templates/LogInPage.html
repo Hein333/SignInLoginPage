@@ -6,11 +6,13 @@
     <title>LogInPage</title>
 </head>
 <body>
+    <form method="post" action="/loginAccount">
     <h3>UserName or Gmail</h3>
-    <input type="text">
+    <input type="text" name="UserNameOrGmail">
     <h3>Password</h3>
-    <input type="password">
+    <input type="password" name="Password">
     <br>
-    <button>Log In</button>
+    <button type="submit">Log In</button>
+    </form>
 </body>
 </html>
