@@ -25,11 +25,11 @@ datalsit = rows
 #MethodsUsedInWebPages
 
 #Username check in database     !!!!!!!!!!!!!
-usernamelist = []
-for i in range(len(datalsit)):
-    usernamelist.append(datalsit[i][1])
 
-def UsernameCheckInDatabase(Username):
+def UsernameCheckInDatabase(Username,datalsit):
+    usernamelist = []
+    for i in range(len(datalsit)):
+        usernamelist.append(datalsit[i][1])
     for i in range(len(usernamelist)):
         if Username in usernamelist:
             print("Your username is already used")
@@ -43,8 +43,8 @@ def UsernameCheckInDatabase(Username):
             print("error in UsernameCheckInDatabase")
             
 #this is to make the same method name as the Gmail           
-def UsernameAnalysis(Username):
-    UsernameCheckInDatabase(Username)
+def UsernameAnalysis(Username,datalsit):
+    UsernameCheckInDatabase(Username,datalsit)
 
 #GmailConfirmation    !!!!!!!!!!!!!
 
