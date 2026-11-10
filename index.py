@@ -11,7 +11,7 @@ DB_DSN = os.environ.get("DB_DSN")
 try:
     with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM cusdata")
+            cursor.execute("SELECT * FROM users1")
 
             rows = cursor.fetchall()
             print(rows)
@@ -122,7 +122,7 @@ def CreteAccount():
         try:
             with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
                 with connection.cursor() as cursor:
-                    sql = "INSERT INTO CUSDATA(GMAIL,PASSWORD) VALUES(:1,:2)"
+                    sql = "INSERT INTO users1(GMAIL,PASSWORD) VALUES(:1,:2)"
                     cursor.execute(sql, (Gmail,Password))
                     cursor.execute("COMMIT")
 
