@@ -27,50 +27,59 @@ datalist = rows
 #Username check in database     !!!!!!!!!!!!!
 
 def UsernameCheckInDatabase(Username,datalist):
+    result = False
     usernamelist = []
     for i in range(len(datalist)):
         usernamelist.append(datalist[i][1])
     for i in range(len(usernamelist)):
         if Username in usernamelist:
             print("Your username is already used")
+            result = False
             break
         elif Username not in usernamelist:
             usernamelist.append(Username)
             print(usernamelist)
             print("Username added")
+            result = True
             break
         else:
             print("error in UsernameCheckInDatabase")
-            
+    return result
 #this is to make the same method name as the Gmail           
 def UsernameAnalysis(Username,datalist):
-    UsernameCheckInDatabase(Username,datalist)
+    return UsernameCheckInDatabase(Username,datalist)
 
 #GmailConfirmation    !!!!!!!!!!!!!
 
 def GmailCheckInDatabase(Gmail,datalist):
+    result = False
     gmaillist = []
     for i in range(len(datalist)):
         gmaillist.append(datalist[i][0])
     for i in range(len(gmaillist)):
         if Gmail in gmaillist:
             print("Your gmail is already used")
+            result = False
             break
         elif Gmail not in gmaillist:
             gmaillist.append(Gmail)
             print(gmaillist)
             print("Gamil added")
+            result = True
             break
         else:
             print("error in GmailCheckInDatabase")
+    return result
             
 #need to improve later more specifically            
 def GmailAnalysis(Gmail,datalist):
+    result = False
     GmailKeyConfirmation =  "@" in Gmail
     if GmailKeyConfirmation:
-        GmailCheckInDatabase(Gmail,datalist)
+        return GmailCheckInDatabase(Gmail,datalist)
     else:
         print("Not a Gamil")
+        return result
 
 
 #check if the password and the confimation password are the same
@@ -102,22 +111,25 @@ def CreteAccount():
     Gmail = request.form["Gmail"]
     Password = request.form["Password"]
     ConfirmPassword = request.form["ConfirmPassword"]
-    GmailAnalysis(Gmail=Gmail,datalist=datalist)
-    doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
-    UsernameAnalysis(Username=UserName,datalist=datalist)
-    try:
-        with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
-            with connection.cursor() as cursor:
-                sql = "INSERT INTO CUSDATA(GMAIL,PASSWORD) VALUES(:1,:2)"
-                cursor.execute(sql, (Gmail,Password))
-                cursor.execute("COMMIT")
+    GmailOK = GmailAnalysis(Gmail=Gmail,datalist=datalist)
+    PasswordOK = doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
+    UsernameOk = UsernameAnalysis(Username=UserName,datalist=datalist)
+    if GmailOK and PasswordOK and UsernameOk :
+        try:
+            with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
+                with connection.cursor() as cursor:
+                    sql = "INSERT INTO CUSDATA(GMAIL,PASSWORD) VALUES(:1,:2)"
+                    cursor.execute(sql, (Gmail,Password))
+                    cursor.execute("COMMIT")
 
-                rows = cursor.fetchall()
-                print(rows)
-                print(cursor)
+                    rows = cursor.fetchall()
+                    print(rows)
+                    print(cursor)
 
-    except Exception as e:
-        print(f"Database Error{e}",flush=True)
+        except Exception as e:
+            print(f"Database Error{e}",flush=True)
+    else:
+        print("gmail",GmailOK,"password",PasswordOK,"Username",UsernameOk)
     return UserName
 
 if __name__ == "__main__":
