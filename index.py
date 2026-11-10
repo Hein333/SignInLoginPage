@@ -48,11 +48,10 @@ def UsernameAnalysis(Username,datalsit):
 
 #GmailConfirmation    !!!!!!!!!!!!!
 
-gmaillist = []
-for i in range(len(datalsit)):
-    gmaillist.append(datalsit[i][0])
-
-def GmailCheckInDatabase(Gmail):
+def GmailCheckInDatabase(Gmail,datalsit):
+    gmaillist = []
+    for i in range(len(datalsit)):
+        gmaillist.append(datalsit[i][0])
     for i in range(len(gmaillist)):
         if Gmail in gmaillist:
             print("Your gmail is already used")
@@ -66,10 +65,10 @@ def GmailCheckInDatabase(Gmail):
             print("error in GmailCheckInDatabase")
             
 #need to improve later more specifically            
-def GmailAnalysis(Gmail):
+def GmailAnalysis(Gmail,datalsit):
     GmailKeyConfirmation =  "@" in Gmail
     if GmailKeyConfirmation:
-        GmailCheckInDatabase(Gmail)
+        GmailCheckInDatabase(Gmail,datalist)
     else:
         print("Not a Gamil")
 
@@ -103,7 +102,7 @@ def CreteAccount():
     Gmail = request.form["Gmail"]
     Password = request.form["Password"]
     ConfirmPassword = request.form["ConfirmPassword"]
-    GmailAnalysis(Gmail=Gmail)
+    GmailAnalysis(Gmail=Gmail,datalsit=datalsit)
     doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
     UsernameAnalysis(Username=UserName,datalsit=datalsit)
     print(rows)

@@ -1,24 +1,27 @@
 datalsit = [('app', None), ('aung@gmail.com', 'aung'), ('hein@gmail.com', 'hein')]
 
-
-def UsernameCheckInDatabase(Username,datalsit):
-    usernamelist = []
+def GmailCheckInDatabase(Gmail,datalsit):
+    gmaillist = []
     for i in range(len(datalsit)):
-        usernamelist.append(datalsit[i][1])
-    for i in range(len(usernamelist)):
-        if Username in usernamelist:
-            print("Your username is already used")
+        gmaillist.append(datalsit[i][0])
+    for i in range(len(gmaillist)):
+        if Gmail in gmaillist:
+            print("Your gmail is already used")
             break
-        elif Username not in usernamelist:
-            usernamelist.append(Username)
-            print(usernamelist)
-            print("Username added")
+        elif Gmail not in gmaillist:
+            gmaillist.append(Gmail)
+            print(gmaillist)
+            print("Gamil added")
             break
         else:
-            print("error in UsernameCheckInDatabase")
+            print("error in GmailCheckInDatabase")
             
-#this is to make the same method name as the Gmail           
-def UsernameAnalysis(Username,datalsit):
-    UsernameCheckInDatabase(Username,datalsit)
+#need to improve later more specifically            
+def GmailAnalysis(Gmail,datalsit):
+    GmailKeyConfirmation =  "@" in Gmail
+    if GmailKeyConfirmation:
+        GmailCheckInDatabase(Gmail,datalist)
+    else:
+        print("Not a Gamil")
 
-UsernameAnalysis('hein',datalsit)
+GmailAnalysis('hein',datalsit)
