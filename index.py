@@ -117,8 +117,7 @@ def CreteAccount():
 
     except Exception as e:
         print(f"Database Error{e}",flush=True)
-        print(rows)
-        return UserName
+    return UserName
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",10000))
