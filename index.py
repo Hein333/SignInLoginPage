@@ -104,6 +104,7 @@ def checkUserNameGmailPassword(gmailorusername,value,password):
                 cursor.execute(sql,(gmailorusername,value))
 
                 rows = cursor.fetchall()
+                print(rows)
                 if password == rows[0]:
                     print("logged in")
                 else:
