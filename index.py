@@ -100,7 +100,7 @@ def checkUserNameGmailPassword(gmailorusername,value,password):
     try:
         with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
             with connection.cursor() as cursor:
-                sql = "SELECT password FROM users1 WHERE :1 = :2"
+                sql = "SELECT password FROM users1 WHERE gmail = :2 or username = :2"
                 cursor.execute(sql,(gmailorusername,value))
 
                 rows = cursor.fetchall()
