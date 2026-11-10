@@ -102,9 +102,9 @@ def CreteAccount():
     Gmail = request.form["Gmail"]
     Password = request.form["Password"]
     ConfirmPassword = request.form["ConfirmPassword"]
-    GmailAnalysis(Gmail=Gmail,datalsit=datalist)
+    GmailAnalysis(Gmail=Gmail,datalist=datalist)
     doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
-    UsernameAnalysis(Username=UserName,datalsit=datalist)
+    UsernameAnalysis(Username=UserName,datalist=datalist)
     print(rows)
     return UserName
 
