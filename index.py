@@ -105,6 +105,8 @@ def CreteAccount():
     GmailAnalysis(Gmail=Gmail,datalist=datalist)
     doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
     UsernameAnalysis(Username=UserName,datalist=datalist)
+    cursor.execute(f"INSERT INTO CUSDATA(GMAIL,PASSWORD) VALUES('{Gmail}','{Password})'")
+    cursor.execute("COMMIT")
     print(rows)
     return UserName
 
