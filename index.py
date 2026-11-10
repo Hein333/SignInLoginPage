@@ -24,7 +24,7 @@ datalsit = rows
 
 #MethodsUsedInWebPages
 
-#Username check in database
+#Username check in database     !!!!!!!!!!!!!
 usernamelist = []
 for i in range(len(datalsit)):
     usernamelist.append(datalsit[i][1])
@@ -46,7 +46,7 @@ def UsernameCheckInDatabase(Username):
 def UsernameAnalysis(Username):
     UsernameCheckInDatabase(Username)
 
-#GmailConfirmation
+#GmailConfirmation    !!!!!!!!!!!!!
 
 gmaillist = []
 for i in range(len(datalsit)):
@@ -106,7 +106,7 @@ def CreteAccount():
     GmailAnalysis(Gmail=Gmail)
     doublePasswordConfirmation(Password=Password,ConfirmPassword=ConfirmPassword)
     UsernameAnalysis(Username=UserName)
-    print("Apple")
+    print(rows)
     return UserName
 
 if __name__ == "__main__":
