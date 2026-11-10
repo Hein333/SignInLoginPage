@@ -127,14 +127,14 @@ def CreteAccount():
                     cursor.execute("COMMIT")
 
                     rows = cursor.fetchall()
-                    print(rows)
-                    print(cursor)
+                   
 
         except Exception as e:
             print(f"Database Error{e}",flush=True)
+        return render_template("LogInPage.html")
     else:
         print("gmail",GmailOK,"password",PasswordOK,"Username",UsernameOk)
-    return UserName
+        return "There is some mistake in your text"
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",10000))
