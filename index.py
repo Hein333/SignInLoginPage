@@ -122,8 +122,8 @@ def CreteAccount():
         try:
             with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
                 with connection.cursor() as cursor:
-                    sql = "INSERT INTO users1(GMAIL,PASSWORD) VALUES(:1,:2)"
-                    cursor.execute(sql, (Gmail,Password))
+                    sql = "INSERT INTO users1(GMAIL,USERNAME,PASSWORD) VALUES(:1,:2,:3)"
+                    cursor.execute(sql, (Gmail,UserName,Password))
                     cursor.execute("COMMIT")
 
                     rows = cursor.fetchall()
