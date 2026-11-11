@@ -113,13 +113,15 @@ def checkUserNameGmailPassword(gmailorusername,value,password):
                 print(rows)
                 if password == rows[0][0]:
                     print("logged in")
+                    return True
                 else:
                     print("not logged in")
-                print(rows)
-                print(cursor)
+                    return False
+                
 
     except Exception as e:
         print(f"Database Error{e}",flush=True)
+
 
 
 #WebPagesManageMent
@@ -182,16 +184,16 @@ def loginAccount():
         print("GamilOk ",GmailOK)  #print
 
         if not GmailOK:
-            checkUserNameGmailPassword("gmail",UsernameOrGmail,Password)
-            print("checkGamilNamePassword",checkUserNameGmailPassword) #print
-            return "logged in with gmail"
+            if checkUserNameGmailPassword("gmail",UsernameOrGmail,Password)
+                print("checkGamilNamePassword",checkUserNameGmailPassword) #print
+                return "logged in with gmail"
     
     UsernameOk = UsernameAnalysis(Username=UsernameOrGmail,datalist=datalist)
     print("UsernameOk",UsernameOk) #print
     if not UsernameOk:
-        checkUserNameGmailPassword("username",UsernameOrGmail,Password)
-        print("checkGamilNamePassword",checkUserNameGmailPassword) #print
-        return "logged in with username"
+        if checkUserNameGmailPassword("username",UsernameOrGmail,Password):
+            print("checkGamilNamePassword",checkUserNameGmailPassword) #print
+            return "logged in with username"
     return "Not logged in "
     
     
