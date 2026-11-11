@@ -111,7 +111,7 @@ def checkUserNameGmailPassword(gmailorusername,value,password):
 
                 rows = cursor.fetchall()
                 print(rows)
-                if password == rows[0]:
+                if password == rows[0][0]:
                     print("logged in")
                 else:
                     print("not logged in")
