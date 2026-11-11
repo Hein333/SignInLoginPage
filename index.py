@@ -8,19 +8,25 @@ DB_USER = os.environ.get("DB_USER")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_DSN = os.environ.get("DB_DSN")
 
-try:
-    with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM users1")
 
-            rows = cursor.fetchall()
-            print(rows)
-            print(cursor)
 
-except Exception as e:
-    print(f"Database Error{e}",flush=True)
-        
-datalist = rows
+#connecting database and getting the datas
+
+def connectDatabase():
+    try:
+        with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM users1")
+
+                rows = cursor.fetchall()
+                print(rows)
+                print(cursor)
+                return rows
+
+    except Exception as e:
+        print(f"Database Error{e}",flush=True)
+
+datalist = connectDatabase()
 
 #MethodsUsedInWebPages
 
@@ -166,6 +172,8 @@ def CreteAccount():
 def loginAccount():
     UsernameOrGmail = request.form["UserNameOrGmail"]
     Password = request.form["Password"]
+    datalist = connectDatabase()
+    print(datalist) # datalist
     print(UsernameOrGmail,Password) # print
     GmailKeyConfirmation =  "@" in UsernameOrGmail
     print("GmaiKeyConfirmation",GmailKeyConfirmation)  #print
@@ -179,7 +187,7 @@ def loginAccount():
             return "logged in with gmail"
     
     UsernameOk = UsernameAnalysis(Username=UsernameOrGmail,datalist=datalist)
-    print("UsernameOk",UsernameOk)
+    print("UsernameOk",UsernameOk) #print
     if not UsernameOk:
         checkUserNameGmailPassword("username",UsernameOrGmail,Password)
         print("checkGamilNamePassword",checkUserNameGmailPassword) #print
