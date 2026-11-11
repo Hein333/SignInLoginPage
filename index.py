@@ -108,7 +108,7 @@ def checkUserNameGmailPassword(gmailorusername,value,password):
             with connection.cursor() as cursor:
                 sql = "SELECT password FROM users1 WHERE gmail = :2 or username = :2"
                 cursor.execute(sql,(gmailorusername,value))
-
+                print(cursor)
                 rows = cursor.fetchall()
                 print(rows)
                 if password == rows[0][0]:
