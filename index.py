@@ -184,7 +184,7 @@ def loginAccount():
         print("GamilOk ",GmailOK)  #print
 
         if not GmailOK:
-            if checkUserNameGmailPassword("gmail",UsernameOrGmail,Password)
+            if checkUserNameGmailPassword("gmail",UsernameOrGmail,Password):
                 print("checkGamilNamePassword",checkUserNameGmailPassword) #print
                 return "logged in with gmail"
     
