@@ -166,16 +166,23 @@ def CreteAccount():
 def loginAccount():
     UsernameOrGmail = request.form["UserNameOrGmail"]
     Password = request.form["Password"]
+    print(UsernameOrGmail,Password) # print
     GmailKeyConfirmation =  "@" in UsernameOrGmail
+    print("GmaiKeyConfirmation",GmailKeyConfirmation)  #print
     if GmailKeyConfirmation:
         GmailOK = GmailAnalysis(Gmail=UsernameOrGmail,datalist=datalist)
+        print("GamilOk ",GmailOK)  #print
+
         if not GmailOK:
             checkUserNameGmailPassword("gmail",UsernameOrGmail,Password)
+            print("checkGamilNamePassword",checkUserNameGmailPassword) #print
             return "logged in with gmail"
     
     UsernameOk = UsernameAnalysis(Username=UsernameOrGmail,datalist=datalist)
+    print("UsernameOk",UsernameOk)
     if not UsernameOk:
         checkUserNameGmailPassword("username",UsernameOrGmail,Password)
+        print("checkGamilNamePassword",checkUserNameGmailPassword) #print
         return "logged in with username"
     return "Not logged in "
     
