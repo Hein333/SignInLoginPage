@@ -102,12 +102,12 @@ def doublePasswordConfirmation(Password,ConfirmPassword):
 
 
 #check if the password in the database and the input on the web is same
-def checkUserNameGmailPassword(gmailorusername,value,password):
+def checkUserNameGmailPassword(value,password):
     try:
         with oracledb.connect(user=DB_USER,password=DB_PASSWORD,dsn = DB_DSN) as connection:
             with connection.cursor() as cursor:
                 sql = "SELECT password FROM users1 WHERE gmail = :2 or username = :2"
-                cursor.execute(sql,(gmailorusername,value))
+                cursor.execute(sql,{"2":value})
                 print(cursor)
                 rows = cursor.fetchall()
                 print(rows)
@@ -184,14 +184,14 @@ def loginAccount():
         print("GamilOk ",GmailOK)  #print
 
         if not GmailOK:
-            if checkUserNameGmailPassword("gmail",UsernameOrGmail,Password):
+            if checkUserNameGmailPassword(UsernameOrGmail,Password):
                 print("checkGamilNamePassword",checkUserNameGmailPassword) #print
                 return "logged in with gmail"
     
     UsernameOk = UsernameAnalysis(Username=UsernameOrGmail,datalist=datalist)
     print("UsernameOk",UsernameOk) #print
     if not UsernameOk:
-        if checkUserNameGmailPassword("username",UsernameOrGmail,Password):
+        if checkUserNameGmailPassword(UsernameOrGmail,Password):
             print("checkGamilNamePassword",checkUserNameGmailPassword) #print
             return "logged in with username"
     return "Not logged in "
